@@ -1,5 +1,5 @@
 .PHONY: run
-run: gen
+run:
 	go run cmd/main.go
 
 .PHONY: gen
