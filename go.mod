@@ -1,4 +1,4 @@
-module github.com/njayp/mike
+module github.com/njayp/testo
 
 go 1.23
 
