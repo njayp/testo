@@ -5,9 +5,10 @@ import (
 	"net/http"
 )
 
-func authzmiddleware(next http.HandlerFunc, roles ...string) http.Handler {
+func middlewareAuthz(next http.HandlerFunc, roles ...string) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		userRoles := getRoles(r)
+
 		for _, role := range roles {
 			for _, userRole := range userRoles {
 				if role == userRole {
@@ -17,7 +18,7 @@ func authzmiddleware(next http.HandlerFunc, roles ...string) http.Handler {
 			}
 		}
 
-		slog.Debug("forbidden", "roles", userRoles)
+		slog.Info("forbidden", "roles", userRoles)
 		http.Error(w, "forbidden", http.StatusForbidden)
 	})
 }

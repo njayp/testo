@@ -14,6 +14,6 @@ func TestMiddleWare(t *testing.T) {
 	req.Header.Set("x-test", "hello")
 
 	w := httptest.NewRecorder()
-	handler := loggingmiddleware(http.NotFoundHandler())
+	handler := middlewareLogging(http.NotFoundHandler())
 	handler.ServeHTTP(w, req)
 }

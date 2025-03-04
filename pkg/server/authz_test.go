@@ -31,7 +31,7 @@ func TestAuthz(t *testing.T) {
 			req.Header.Set("X-Roles", test.roles[0])
 
 			w := httptest.NewRecorder()
-			handler := authzmiddleware(func(w http.ResponseWriter, r *http.Request) {}, "admin")
+			handler := middlewareAuthz(func(w http.ResponseWriter, r *http.Request) {}, "admin")
 			handler.ServeHTTP(w, req)
 
 			if w.Code != test.code {

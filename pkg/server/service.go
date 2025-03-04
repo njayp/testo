@@ -26,16 +26,16 @@ type AddResponse struct {
 	Count int32 `json:"count"`
 }
 
-func (s *service) HandleAdd(w http.ResponseWriter, r *http.Request) {
+func (s *service) handleAdd(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodPost:
-		s.HandleAddPost(w, r)
+		s.handleAddPost(w, r)
 	case http.MethodGet:
-		s.HandleAddGet(w, r)
+		s.handleAddGet(w, r)
 	}
 }
 
-func (s *service) HandleAddPost(w http.ResponseWriter, r *http.Request) {
+func (s *service) handleAddPost(w http.ResponseWriter, r *http.Request) {
 	var req AddRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
@@ -54,7 +54,7 @@ func (s *service) HandleAddPost(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (s *service) HandleAddGet(w http.ResponseWriter, r *http.Request) {
+func (s *service) handleAddGet(w http.ResponseWriter, r *http.Request) {
 	raw := r.URL.Query().Get("num")
 	num, err := strconv.Atoi(raw)
 	if err != nil {

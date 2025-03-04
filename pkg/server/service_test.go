@@ -15,7 +15,7 @@ func TestAddPost(t *testing.T) {
 		req  *AddRequest
 		resp *AddResponse
 	}{{
-		name: "num is 2",
+		name: "2",
 		req: &AddRequest{
 			Num: 2,
 		},
@@ -23,7 +23,7 @@ func TestAddPost(t *testing.T) {
 			Count: 2,
 		}},
 		{
-			name: "num is 4",
+			name: "4",
 			req: &AddRequest{
 				Num: 4,
 			},
@@ -40,7 +40,7 @@ func TestAddPost(t *testing.T) {
 			}
 
 			s := newService()
-			handler := http.HandlerFunc(s.HandleAdd)
+			handler := http.HandlerFunc(s.handleAdd)
 			w := httptest.NewRecorder()
 			handler.ServeHTTP(w, req)
 
@@ -63,13 +63,13 @@ func TestAddGet(t *testing.T) {
 		num  int
 		resp *AddResponse
 	}{{
-		name: "num is 2",
+		name: "2",
 		num:  2,
 		resp: &AddResponse{
 			Count: 2,
 		}},
 		{
-			name: "num is 4",
+			name: "4",
 			num:  4,
 			resp: &AddResponse{
 				Count: 4,
@@ -82,7 +82,7 @@ func TestAddGet(t *testing.T) {
 			}
 
 			s := newService()
-			handler := http.HandlerFunc(s.HandleAdd)
+			handler := http.HandlerFunc(s.handleAdd)
 			w := httptest.NewRecorder()
 			handler.ServeHTTP(w, req)
 
